@@ -20,8 +20,10 @@ import NumberButton from "./NumberButton";
     const [numberState, setNumberState] = useState(numbers);
 
     const numberHandler = (number) => {
-      if (number === '1'){
-        update();
+      if(number === "1"){
+        console.log(number);
+      }else{
+        console.log(null);
       }
     }
 
