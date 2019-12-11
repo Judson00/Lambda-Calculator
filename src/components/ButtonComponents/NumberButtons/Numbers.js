@@ -8,9 +8,6 @@ import NumberButton from "./NumberButton";
 
 //Import your array data to from the provided data file
 
-const clickHandler = (number) => {
-  console.log(number);
-}
   // STEP 2 - add the imported data to state
   
   
@@ -21,8 +18,15 @@ const clickHandler = (number) => {
       
     const Numbers = ({ update }) => {
     const [numberState, setNumberState] = useState(numbers);
+
+    const numberHandler = (number) => {
+      if (number === '1'){
+        update();
+      }
+    }
+
     return(
-      numberState.map((number, index) => <NumberButton key={index} number={number} index={index} numberButtons={() => update(number)}/>)
+      numberState.map((number, index) => <NumberButton key={index} number={number} index={index} update={() => update(number)}/>)
 
   )};
 
