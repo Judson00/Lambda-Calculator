@@ -1,0 +1,194 @@
+// Reset
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html, body {
+	box-sizing: border-box;
+	line-height: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// Mixins
+
+@mixin flex($rowWrap: row wrap, $justify: center, $align: center){
+	display: flex;
+	flex-flow: $rowWrap;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+@mixin grid-container{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	grid-auto-rows: minmax(max-content, auto);
+	width: 100%;
+	justify-items: center;
+	align-items: center;
+	grid-template-areas:
+	"a a a a"
+	"b c d e"
+	"f g h i"
+	"j k l m"
+	"n o p q"
+	"r r s t"
+}
+
+@mixin grid($gridArea){
+	grid-area: $gridArea;
+}
+
+// Helpers
+button {
+	@include flex;
+	height: 75px;
+	width: 75px;
+	border-radius: 50%;
+	background-color: navy;
+	color: white;
+	font-size: 20px;
+	border: 1px solid black;
+	transition: 500ms;
+}
+
+
+.container{
+	width: 375px;
+	height: 600px;
+	background-color: #aa0000;
+	border-radius: 20px;
+	padding: 25px;
+
+	.App{
+		@include grid-container;
+
+		.display{
+			@include flex(row wrap, flex-end, center);
+			@include grid(a);
+			height: 90px;
+			width: 100%;
+			border-radius: 50px;
+			background-color: black;
+			color: white;
+			font-size: 30px;
+			text-align: right;
+			
+			h3 {
+				margin-right: 30px;
+			}
+		}
+		// Numbers Order
+		.number-0{
+			@include grid(f)
+		}
+		.number-1{
+			@include grid(g)
+		}
+		.number-2{
+			@include grid(h)
+		}
+		.number-3{
+			@include grid(j)
+		}
+		.number-4{
+			@include grid(k)
+		}
+		.number-5{
+			@include grid(l)
+		}
+		.number-6{
+			@include grid(n)
+		}
+		.number-7{
+			@include grid(o)
+		}
+		.number-8{
+			@include grid(p)
+		}
+		.number-9{
+			@include grid(r)
+			width: 100%;
+			border-radius: 50px;
+		}
+		.number-10{
+			@include grid(s)
+		}
+
+		// Operator Order
+		.operator-0{
+			@include grid(e);
+			background-color: grey;
+		}
+		.operator-1{
+			@include grid(i);
+			background-color: grey;
+		}
+		.operator-2{
+			@include grid(m);
+			background-color: grey;
+		}
+		.operator-3{
+			@include grid(q);
+			background-color: grey;
+		}
+		.operator-4{
+			@include grid(t);
+			background-color: grey;
+		}
+
+		//Specials Order
+		.specials-0{
+			@include grid(b);
+			background-color: dodgerblue;
+		}
+		.specials-1{
+			@include grid(c);
+			background-color: dodgerblue;
+		}
+		.specials-2{
+			@include grid(d);
+			background-color: dodgerblue;
+		}
+		
+	}
+}
